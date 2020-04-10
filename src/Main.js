@@ -5,7 +5,9 @@ export default class Main extends React.Component {
 
     state = {
         places: [],
-        loaded: false
+        loaded: false,
+        startingCountry: '',
+        endingCountry: ''
     }
 
     componentDidMount(){
@@ -17,11 +19,17 @@ export default class Main extends React.Component {
             }))
     }
 
+    handleFormChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
     render(){
         return(
             this.state.loaded ? 
             <div>
-                <SearchForm countries={this.state.places}/>
+                <SearchForm handleFormChange={this.handleFormChange} countries={this.state.places}/>
             </div>
             :
             <div>not loaded yet</div>
