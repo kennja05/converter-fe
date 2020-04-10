@@ -7,7 +7,8 @@ export default class Main extends React.Component {
         places: [],
         loaded: false,
         startingCountry: '',
-        endingCountry: ''
+        endingCountry: '',
+        amount: ''
     }
 
     componentDidMount(){
@@ -26,10 +27,11 @@ export default class Main extends React.Component {
     }
 
     render(){
+        console.log(this.state.amount)
         return(
             this.state.loaded ? 
             <div>
-                <SearchForm handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                <SearchForm amt={this.state.amount} handleFormChange={this.handleFormChange} countries={this.state.places}/>
             </div>
             :
             <div>not loaded yet</div>

@@ -15,6 +15,10 @@ const SearchForm = (props) => {
                     {props.countries.map(country => <option key={country.id} value={country.currency_code}>{country.name}</option>)}
                 </select>
 
+                <label>Amount</label>
+                <input onChange={props.handleFormChange} value={props.amt} type='number' name='amount' />
+            
+                <input type='submit'/>
             </form>
         </div>
     )
