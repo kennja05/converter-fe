@@ -1,6 +1,7 @@
 import React from 'react'
 import SearchForm from './SearchForm'
 import Result from './Result'
+import ReactLoading from 'react-loading'
 
 export default class Main extends React.Component {
 
@@ -9,10 +10,12 @@ export default class Main extends React.Component {
     state = {
         places: [],
         loaded: false,
-        startingCountry: '',
-        endingCountry: '',
+        startingCountry: 'AFN', //essentially giving the select form a default value if user submits form without changing anything
+        endingCountry: 'AFN',
         amount: '',
-        searched: false
+        searched: false,
+        conversionInfo: [],
+
     }
 
     componentDidMount(){
@@ -32,22 +35,30 @@ export default class Main extends React.Component {
 
     handleFormSubmit = (e) => {
         e.preventDefault();
-        const {startingCountry, endingCountry, amount} = this.state
-        fetch(`http://localhost:3000/countries/convert/${startingCountry}/${endingCountry}/${amount}`)
-            .then(res => res.json())
-            .then(info => console.log(info))
+        if (this.state.amount > 0) {
+            const {startingCountry, endingCountry, amount} = this.state
+            fetch(`http://localhost:3000/countries/convert/${startingCountry}/${endingCountry}/${amount}`)
+                .then(res => res.json())
+                .then(conversion => this.setState({
+                    searched: true,
+                    conversionInfo: conversion
+                }))
+        } else {
+            alert("Please input an amount greater than 0")
+        }
     }
 
     render(){
-        console.log(this.state.amount)
         return(
             this.state.loaded ? 
             <div>
                 <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
-                <Result />
+                {this.state.searched && <Result conversion={this.state.conversionInfo} />}
             </div>
             :
-            <div>not loaded yet</div>
+            <div>
+                <ReactLoading type={'bars'} color={'#6b6e70'} />
+            </div>
         )
     }
 
