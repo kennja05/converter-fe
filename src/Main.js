@@ -1,14 +1,18 @@
 import React from 'react'
 import SearchForm from './SearchForm'
+import Result from './Result'
 
 export default class Main extends React.Component {
+
+    
 
     state = {
         places: [],
         loaded: false,
         startingCountry: '',
         endingCountry: '',
-        amount: ''
+        amount: '',
+        searched: false
     }
 
     componentDidMount(){
@@ -26,12 +30,20 @@ export default class Main extends React.Component {
         })
     }
 
+    handleFormSubmit = (e) => {
+        e.preventDefault();
+        fetch(`http://localhost:3000/countries/convert/GBP/JPY/25`)
+            .then(res => res.json())
+            .then(info => console.log(info))
+    }
+
     render(){
         console.log(this.state.amount)
         return(
             this.state.loaded ? 
             <div>
-                <SearchForm amt={this.state.amount} handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                <Result />
             </div>
             :
             <div>not loaded yet</div>
