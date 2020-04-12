@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Switch>
         <Route path='/main' component={Main} />
-        <Route path='/:code' component={Charts} />
+        <Route path='/:code' render={(routerProps) => <Charts {...routerProps}/>}/>
         <Route path='/' component={Start} />
       </Switch>
     </div>
