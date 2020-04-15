@@ -30,7 +30,8 @@ export default class Main extends React.Component {
 
     handleFormChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            [e.target.name]: e.target.value,
+            searched: false
         })
     }
 

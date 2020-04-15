@@ -23,7 +23,9 @@ export default class HistoricalInfo extends React.Component {
         console.log('base:', base, 'amount:', amount, 'target:', target)
         console.log(this.state.historicalExchangeRate)
         return(
-            <h2>This same conversion if it were done 1 year ago {amount} {base} would have been   {amount}.</h2>
+            <h2>
+                This same conversion if it were done 1 year ago {amount} {base} would have been   {Object.values(this.state.historicalExchangeRate)[0]} {amount} {target}.
+            </h2>
         )
     }
 }
