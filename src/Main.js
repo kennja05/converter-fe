@@ -1,7 +1,6 @@
 import React from 'react'
 import SearchForm from './SearchForm'
 import Result from './Result'
-import HistoricalInfo from './HistoricalInfo'
 import ReactLoading from 'react-loading'
 
 export default class Main extends React.Component {
@@ -56,7 +55,6 @@ export default class Main extends React.Component {
             <div>
                 <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
                 {this.state.searched && <Result conversion={this.state.conversionInfo} />}
-                {this.state.searched && <HistoricalInfo amount={this.state.amount} base={this.state.startingCountry} target={this.state.endingCountry}/>}
             </div>
             :
             <div>
