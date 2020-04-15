@@ -37,6 +37,7 @@ export default class Main extends React.Component {
     handleFormSubmit = (e) => {
         e.preventDefault();
         if (this.state.amount > 0) {
+            this.props.appStateUpdate(this.state)
             const {startingCountry, endingCountry, amount} = this.state
             fetch(`http://localhost:3000/countries/convert/${startingCountry}/${endingCountry}/${amount}`)
                 .then(res => res.json())
