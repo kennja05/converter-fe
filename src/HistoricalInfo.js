@@ -3,16 +3,18 @@ import React from 'react'
 export default class HistoricalInfo extends React.Component {
     
     state = {
+        base: 'USD',
         oldRates: []
     }
 
     componentDidMount(){
-        this.getHistoricalRates()
+        this.getRates()
     }
 
     getHistoricalRates = () => {
-        const base = this.props.match.params
-        const target = 'USD'
+        const base = this.state.base
+        const target = this.props.match.params.code
+        console.log(target)
         const historicalRateArray = [];
         const myDate = new Date();
         const formattedCurrentDate = myDate.toISOString().split('T')[0] //gets todays date in yyy-mm-dd format
@@ -20,6 +22,7 @@ export default class HistoricalInfo extends React.Component {
             const dateArr = formattedCurrentDate.split('-')
             dateArr[0] = parseInt(dateArr[0])- i
             const prevDate = dateArr.join('-')
+            console.log(prevDate)
             fetch(`http://localhost:3000/countries/historical/rates/${base}/${target}/${prevDate}/`)
                 .then(resp => resp.json())
                 .then(rate => historicalRateArray.push(rate))
@@ -29,11 +32,22 @@ export default class HistoricalInfo extends React.Component {
         })
     }
 
+    getRates = () => {
+        const base = this.state.base
+        const target = this.props.match.params.code
+        const myDate = new Date();
+        const formattedCurrentDate = myDate.toISOString().split('T')[0]
+        console.log(formattedCurrentDate)
+        fetch(`http://localhost:3000/countries/historical/rates/${base}/${target}/${formattedCurrentDate}/`)
+            .then(resp => resp.json())
+            .then(info => console.log(info))
+    }
+
     render(){
-        const {base, amount, target} = this.props
+        console.log(this.state.oldRates)
         return(
             <h2>
-                This same conversion if it were done 1 year ago {amount} {base} would have been changeRate {target}.
+                This same conversion if it were done 1 year ago
             </h2>
         )
     }
