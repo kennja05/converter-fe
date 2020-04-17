@@ -25,7 +25,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Switch>
-          <Route path='/main' render={() => <Main appStateUpdate={this.infoForHistoricalRates} />} />
+          <Route path='/convert' render={() => <Main appStateUpdate={this.infoForHistoricalRates} />} />
           <Route path='/historical_info/:code' render={(routerProps) => <HistoricalInfo {...routerProps} />} />
           <Route path='/' component={Start} />
         </Switch>

@@ -48,7 +48,7 @@ export default class Main extends React.Component {
             alert("Please input an amount greater than 0")
         }
     }
-
+    
     render(){
         return(
             this.state.loaded ? 
