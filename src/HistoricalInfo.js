@@ -38,18 +38,25 @@ export default class HistoricalInfo extends React.Component {
         })
     }
 
+    displayZero = () => {
+        if (this.state.coordinates.length > 0 && this.state.coordinates[0].y < 10) {
+            return true
+        } else {
+            return false
+        }
+    }
+
     render(){
         const options = {
             theme: 'dark2',
             title:{text: `${this.state.base} to ${this.props.match.params.code}`},
             axisY: {
                 title: `${this.state.base} to ${this.props.match.params.code}`,
-                includeZero: false,
+                includeZero: this.displayZero(),
                 
             },
             axisX: {
                 title: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,
-                includeZero: false,
                 interval: 1
             },
             exportEnabled: true,
@@ -58,7 +65,6 @@ export default class HistoricalInfo extends React.Component {
                 dataPoints: this.state.coordinates
             }]
         }
-        console.log(this.state.coordinates)
         return(
             <div>
                 <h2>

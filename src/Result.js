@@ -16,5 +16,3 @@ const Result = (props) => {
 }
 
 export default Result
-
-// to={{pathname: `/${this.props.testvalue}`
