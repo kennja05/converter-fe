@@ -26,17 +26,14 @@ export default class HistoricalInfo extends React.Component {
     }
 
     createCoordinates = ratesArray => {
-        console.log(ratesArray)
         const myArr = [];
-        for (let i = 0; i < ratesArray.lenth; i++){
-            let myObj = {x: ratesArray[i].date}
+        for (let i = 0; i < ratesArray.length; i++){
+            let myObj = {x: ratesArray[i].date, y: Object.values(ratesArray[i].rates)[0]}
             myArr.push(myObj)
-            console.log(myObj)
         } 
         this.setState({
             coordinates: myArr
         })
-        console.log(myArr)
     }
 
     render(){
@@ -59,7 +56,7 @@ export default class HistoricalInfo extends React.Component {
                 { x: 11, y: 480 },
                 { x: 12, y: 510 }
               ]}]
-          }
+        }
         return(
             <div>
                 <h2>
