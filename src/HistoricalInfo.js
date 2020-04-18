@@ -25,9 +25,14 @@ export default class HistoricalInfo extends React.Component {
 
     render(){
         return(
-            <h2>
-                This same conversion if it were done 1 year ago
-            </h2>
+            <div>
+                <h2>
+                Historical Rates 
+                </h2>
+                <ul>
+                    {this.state.historicalRates.map((rate, index) => <li key={index}>{rate.date} rate: {Object.values(rate.rates)}</li>)}
+                </ul>
+            </div>
         )
     }
 }
