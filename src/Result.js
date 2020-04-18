@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Result = (props) => {
 
@@ -8,10 +9,12 @@ const Result = (props) => {
 
     return(
         <div>
-            <h1>{amount} {from} is equal to {props.conversion.result.toFixed(2)} {to}</h1>
+            <h1>{amount} <Link to={{pathname: `/historical_info/${from}`}}>{from}</Link> is equal to {props.conversion.result.toFixed(2)} <Link to={{pathname: `/historical_info/${to}`}}>{to}</Link></h1>
         </div>
     )
 
 }
 
 export default Result
+
+// to={{pathname: `/${this.props.testvalue}`

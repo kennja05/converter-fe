@@ -28,7 +28,9 @@ export default class HistoricalInfo extends React.Component {
     createCoordinates = ratesArray => {
         const myArr = [];
         for (let i = 0; i < ratesArray.length; i++){
-            let myObj = {x: ratesArray[i].date, y: Object.values(ratesArray[i].rates)[0]}
+            const year = parseInt(ratesArray[i].date.split('-')[0])
+            console.log(year)
+            let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0]}
             myArr.push(myObj)
         } 
         this.setState({
@@ -38,25 +40,25 @@ export default class HistoricalInfo extends React.Component {
 
     render(){
         const options = {
+            theme: 'dark2',
             title:{text: `${this.state.base} to ${this.props.match.params.code}`},
+            axisY: {
+                title: `${this.state.base} to ${this.props.match.params.code}`,
+                includeZero: false,
+                
+            },
+            axisX: {
+                title: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,
+                includeZero: false,
+                interval: 1
+            },
             exportEnabled: true,
             data: [{
                 type: "line",
-                dataPoints: [
-                { x: 1, y: 450 },
-                { x: 2, y: 414 },
-                { x: 3, y: 520 },
-                { x: 4, y: 460 },
-                { x: 5, y: 450 },
-                { x: 6, y: 500 },
-                { x: 7, y: 480 },
-                { x: 8, y: 480 },
-                { x: 9, y: 410 },
-                { x: 10, y: 500 },
-                { x: 11, y: 480 },
-                { x: 12, y: 510 }
-              ]}]
+                dataPoints: this.state.coordinates
+            }]
         }
+        console.log(this.state.coordinates)
         return(
             <div>
                 <h2>
@@ -65,7 +67,9 @@ export default class HistoricalInfo extends React.Component {
                 <ul>
                     {this.state.historicalRates.map((rate, index) => <li key={index}>{rate.date} rate: {Object.values(rate.rates)}</li>)}
                 </ul>
-                <CanvasJSChart options={options}/>
+                <div className='chart-container'>
+                    <CanvasJSChart options={options}/>
+                </div>
             </div>
         )
     }
