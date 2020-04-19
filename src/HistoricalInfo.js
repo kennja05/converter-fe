@@ -66,15 +66,7 @@ export default class HistoricalInfo extends React.Component {
             }]
         }
         return(
-            <div className='container'>
-                
-                    <h2 className='jumbotron'>
-                        Historical Rates: {this.state.base} to {this.props.match.params.code}
-                    </h2>
-                
-                <ul>
-                    {this.state.historicalRates.map((rate, index) => <li key={index}>{rate.date} rate: {Object.values(rate.rates)}</li>)}
-                </ul>
+            <div className='container chart-countries'>
                 <div>
                     <CanvasJSChart options={options}/>
                 </div>
