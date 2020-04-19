@@ -1,6 +1,14 @@
 .App {
   text-align: center;
+  background-color: #EAE7DC;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+
+
 
 .App-logo {
   height: 40vmin;
@@ -37,3 +45,13 @@
   }
 }
 
+.convert-main{
+  color:  #E98074; 
+  border-style: solid;
+  box-shadow: 5px 5px;
+  margin-bottom: 2%;
+}
+
+.result{
+  color: #E85A4f;
+}

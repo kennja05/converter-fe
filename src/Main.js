@@ -53,7 +53,10 @@ export default class Main extends React.Component {
         return(
             this.state.loaded ? 
             <div>
-                <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                <div className='convert-main'>
+                    <h1 style={{color:'#8e8d8a'}}>Currency Conversion</h1>
+                    <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                </div>
                 {this.state.searched && <Result conversion={this.state.conversionInfo} />}
             </div>
             :
