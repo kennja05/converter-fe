@@ -1,4 +1,5 @@
 import React from 'react'
+import SharedCountries from './SharedCountries'
 import CanvasJSReact from './canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
@@ -29,7 +30,6 @@ export default class HistoricalInfo extends React.Component {
         const myArr = [];
         for (let i = 0; i < ratesArray.length; i++){
             const year = parseInt(ratesArray[i].date.split('-')[0])
-            console.log(year)
             let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0]}
             myArr.push(myObj)
         } 
@@ -75,6 +75,9 @@ export default class HistoricalInfo extends React.Component {
                 </ul>
                 <div className='chart-container'>
                     <CanvasJSChart options={options}/>
+                </div>
+                <div>
+                    <SharedCountries code={this.props.match.params.code}/> 
                 </div>
             </div>
         )
