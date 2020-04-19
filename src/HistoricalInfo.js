@@ -1,6 +1,7 @@
 import React from 'react'
 import SharedCountries from './SharedCountries'
 import CanvasJSReact from './canvasjs.react';
+import BaseChangeForm from './BaseChangeForm'
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
