@@ -18,9 +18,9 @@ export default class SharedCountries extends React.Component {
         console.log(this.state.countries)
         return(
             <div>
-                <h2 className='jumbotron'>Countries that use the <u>{this.state.loaded && this.state.countries[0].currency_name}</u></h2>
-                <ul>
-                    {this.state.loaded && this.state.countries.map(country => <li key={country.id}>{country.name}</li>)}
+                <h2 className='jumbotron title'>Countries that use the {this.state.loaded && this.state.countries[0].currency_name} ({this.props.code})</h2>
+                <ul className='list-group'>
+                    {this.state.loaded && this.state.countries.map(country => <li className='list-group-item' key={country.id}>{country.name}</li>)}
                 </ul>
             </div>
         )

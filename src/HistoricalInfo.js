@@ -12,9 +12,9 @@ export default class HistoricalInfo extends React.Component {
         coordinates: []
     }
 
-    componentDidMount(){
-        this.getRates()
-    }
+    // componentDidMount(){
+    //     this.getRates()
+    // }
 
     getRates = () => {
         const base = this.state.base
@@ -66,14 +66,16 @@ export default class HistoricalInfo extends React.Component {
             }]
         }
         return(
-            <div>
-                <h2>
-                Historical Rates: {this.state.base} to {this.props.match.params.code}
-                </h2>
+            <div className='container'>
+                
+                    <h2 className='jumbotron'>
+                        Historical Rates: {this.state.base} to {this.props.match.params.code}
+                    </h2>
+                
                 <ul>
                     {this.state.historicalRates.map((rate, index) => <li key={index}>{rate.date} rate: {Object.values(rate.rates)}</li>)}
                 </ul>
-                <div className='chart-container'>
+                <div>
                     <CanvasJSChart options={options}/>
                 </div>
                 <div>

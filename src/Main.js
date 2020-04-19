@@ -12,7 +12,7 @@ export default class Main extends React.Component {
         loaded: false,
         startingCountry: 'AFN', //essentially giving the select form a default value if user submits form without changing anything
         endingCountry: 'AFN',
-        amount: '',
+        amount: '1',
         searched: false,
         conversionInfo: [],
 
