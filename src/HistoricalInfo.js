@@ -12,9 +12,9 @@ export default class HistoricalInfo extends React.Component {
         coordinates: []
     }
 
-    // componentDidMount(){
-    //     this.getRates()
-    // }
+    componentDidMount(){
+        this.getRates()
+    }
 
     getRates = () => {
         const base = this.state.base
@@ -30,7 +30,7 @@ export default class HistoricalInfo extends React.Component {
         const myArr = [];
         for (let i = 0; i < ratesArray.length; i++){
             const year = parseInt(ratesArray[i].date.split('-')[0])
-            let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0]}
+            let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0], lineColor: '#E98074', markerColor: '#8E8D8A'}
             myArr.push(myObj)
         } 
         this.setState({
@@ -48,20 +48,24 @@ export default class HistoricalInfo extends React.Component {
 
     render(){
         const options = {
-            theme: 'dark2',
-            title:{text: `${this.state.base} to ${this.props.match.params.code}`},
+            theme: 'light2',
+            
+            lineColor: '#E98074',
+            title:{text: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,fontColor: "#E98074"},
             axisY: {
-                title: `${this.state.base} to ${this.props.match.params.code}`,
+                title: `1 ${this.state.base} to ${this.props.match.params.code.toUpperCase()}`,
                 includeZero: this.displayZero(),
-                
+                interval: .25
             },
             axisX: {
-                title: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,
-                interval: 1
+                title: `YEAR`,
+                interval: 1,
+                valueFormatString:'#'
             },
             exportEnabled: true,
             data: [{
                 type: "line",
+                xValueFormatString: '#',
                 dataPoints: this.state.coordinates
             }]
         }
