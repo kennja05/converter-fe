@@ -67,3 +67,8 @@
   list-style-type: none;
   color: #e98074
 }
+
+.radio-form{
+  display: flex;
+  justify-content: center;
+}

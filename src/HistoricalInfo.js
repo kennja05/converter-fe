@@ -74,6 +74,7 @@ export default class HistoricalInfo extends React.Component {
             <div className='container chart-countries'>
                 <div>
                     <CanvasJSChart options={options}/>
+                    <BaseChangeForm />
                 </div>
                 <div>
                     <SharedCountries code={this.props.match.params.code}/> 
