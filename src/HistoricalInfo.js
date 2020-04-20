@@ -47,6 +47,14 @@ export default class HistoricalInfo extends React.Component {
         }
     }
 
+    changeBase = (code) => {
+        if (this.state.base !== code){
+            this.setState({
+                base: code
+            })
+        }
+    }
+
     render(){
         const options = {
             theme: 'light2',
@@ -74,7 +82,7 @@ export default class HistoricalInfo extends React.Component {
             <div className='container chart-countries'>
                 <div>
                     <CanvasJSChart options={options}/>
-                    <BaseChangeForm />
+                    <BaseChangeForm changeBase={this.changeBase}/>
                 </div>
                 <div>
                     <SharedCountries code={this.props.match.params.code}/> 

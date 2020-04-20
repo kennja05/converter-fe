@@ -3,11 +3,23 @@ import React from 'react'
 class BaseChangeForm extends React.Component {
     
     state = {
-        checked: 'EUR'
+        checked: 'EUR',
+        showSubmit: false
     }
     
-    handleChangeBase = () => {
-        
+    handleChangeBase = (e) => {
+        console.log(e.target.name)
+        this.setState({
+            checked: e.target.name
+        })
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.checked !== this.state.checked){
+            this.setState({
+                showSubmit: true
+            })
+        }
     }
     
     
@@ -15,17 +27,17 @@ class BaseChangeForm extends React.Component {
         return(
             <div className='radio-form'>
                 
-                <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='USD' value='USD' checked={this.state.checked === 'USD'}/>
-                    <label class='form-check-label' for='USD'>U.S. Dollar</label>
+                <div className='form-check'>
+                    <input onChange={this.handleChangeBase} className='form-check-input' type='radio' name='USD' value='USD' checked={this.state.checked === 'USD'}/>
+                    <label className='form-check-label' htmlFor='USD'>U.S. Dollar</label>
                 </div>
 
-                <div class='form-check'>
-                    <input class='form-check-input' type='radio' name='EUR' value='USD' checked={this.state.checked === 'EUR'}/>
-                    <label class='form-check-label' for='EUR'>Euro</label>
+                <div className='form-check'>
+                    <input onChange={this.handleChangeBase} className='form-check-input' type='radio' name='EUR' value='USD' checked={this.state.checked === 'EUR'}/>
+                    <label className='form-check-label' htmlFor='EUR'>Euro</label>
                 </div>
 
-
+                <input type='submit' value='change base currency'/>
 
 
 
