@@ -14,15 +14,15 @@ export default class HistoricalInfo extends React.Component {
         validCode: true
     }
 
-    componentDidMount(){
-        this.getRates()
-    }
+    // componentDidMount(){
+    //     this.getRates()
+    // }
 
-    componentDidUpdate(prevProps, prevState){
-        if (prevState.base !== this.state.base) {
-            this.getRates()
-        }
-    }
+    // componentDidUpdate(prevProps, prevState){
+    //     if (prevState.base !== this.state.base) {
+    //         this.getRates()
+    //     }
+    // }
 
     getRates = () => {
         const base = this.state.base
@@ -88,12 +88,12 @@ export default class HistoricalInfo extends React.Component {
     render(){
         const options = {
             theme: 'light2',
-            // height: 200,
+            height: 250,
             lineColor: '#E98074',
             title:{text: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,fontColor: "#E98074"},
             axisY: {
                 title: `1 ${this.state.base} to ${this.props.match.params.code.toUpperCase()}`,
-                includeZero: this.displayZero(),
+                includeZero: false,
                 interval: this.interval()
             },
             axisX: {
