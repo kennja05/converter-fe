@@ -17,6 +17,12 @@ export default class HistoricalInfo extends React.Component {
         this.getRates()
     }
 
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.base !== this.state.base) {
+            this.getRates()
+        }
+    }
+
     getRates = () => {
         const base = this.state.base
         const target = this.props.match.params.code
@@ -47,7 +53,8 @@ export default class HistoricalInfo extends React.Component {
         }
     }
 
-    changeBase = (code) => {
+    changeBase = (e, code) => {
+        e.preventDefault()
         if (this.state.base !== code){
             this.setState({
                 base: code
