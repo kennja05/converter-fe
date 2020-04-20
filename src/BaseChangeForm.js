@@ -25,9 +25,7 @@ class BaseChangeForm extends React.Component {
     render(){
         return(
             <div className='radio-form'>
-                
                 <form onSubmit={(e) => this.props.changeBase(e, this.state.checked)}>
-                    <div>
                         <div className='form-check'>
                             <input onChange={this.handleChangeBase} className='form-check-input' type='radio' name='USD' value='USD' checked={this.state.checked === 'USD'}/>
                             <label className='form-check-label' htmlFor='USD'>U.S. Dollar</label>
@@ -36,13 +34,8 @@ class BaseChangeForm extends React.Component {
                             <input onChange={this.handleChangeBase} className='form-check-input' type='radio' name='EUR' value='USD' checked={this.state.checked === 'EUR'}/>
                             <label className='form-check-label' htmlFor='EUR'>Euro</label>
                         </div>
-                    </div>
-
                     <input type='submit' value='change base currency'/>
                 </form>
-
-
-
             </div>
         )
     }

@@ -10,7 +10,8 @@ export default class HistoricalInfo extends React.Component {
     state = {
         base: 'USD',
         historicalRates: [],
-        coordinates: []
+        coordinates: [],
+        validCode: true
     }
 
     componentDidMount(){
@@ -34,15 +35,19 @@ export default class HistoricalInfo extends React.Component {
     }
 
     createCoordinates = ratesArray => {
-        const myArr = [];
-        for (let i = 0; i < ratesArray.length; i++){
-            const year = parseInt(ratesArray[i].date.split('-')[0])
-            let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0], lineColor: '#E98074', markerColor: '#8E8D8A'}
-            myArr.push(myObj)
-        } 
-        this.setState({
-            coordinates: myArr
-        })
+         if (ratesArray[0].success === true) {
+            const myArr = [];
+            for (let i = 0; i < ratesArray.length; i++){
+                const year = parseInt(ratesArray[i].date.split('-')[0])
+                let myObj = {x: year, y: Object.values(ratesArray[i].rates)[0], lineColor: '#E98074', markerColor: '#8E8D8A'}
+                myArr.push(myObj)
+            } 
+            this.setState({
+                coordinates: myArr
+            })
+        } else {
+            this.setState({validCode: false})
+        }
     }
 
     displayZero = () => {
@@ -50,6 +55,24 @@ export default class HistoricalInfo extends React.Component {
             return true
         } else {
             return false
+        }
+    }
+
+    interval= () => {
+        if (this.state.coordinates.length > 0){
+            const myArr = this.state.coordinates.map(coord => coord.y).sort()
+            const maxRange = myArr[myArr.length -1] - myArr[0]
+            if (maxRange < 1) {
+                return 0.1
+            } else if (maxRange < 5) {
+                return 0.25
+            } else if (maxRange < 20) {
+                return 0.5
+            } else if (maxRange < 50) {
+                return 4
+            } else {
+                return 10
+            }
         }
     }
 
@@ -65,13 +88,13 @@ export default class HistoricalInfo extends React.Component {
     render(){
         const options = {
             theme: 'light2',
-            
+            // height: 200,
             lineColor: '#E98074',
             title:{text: `On this day (${new Date().getMonth() + 1}/${new Date().getDate()}) by year`,fontColor: "#E98074"},
             axisY: {
                 title: `1 ${this.state.base} to ${this.props.match.params.code.toUpperCase()}`,
                 includeZero: this.displayZero(),
-                interval: .25
+                interval: this.interval()
             },
             axisX: {
                 title: `YEAR`,
@@ -86,14 +109,12 @@ export default class HistoricalInfo extends React.Component {
             }]
         }
         return(
-            <div className='container chart-countries'>
-                <div>
+            <div className='container historical-info'>
+                <div className='chart-holder'>
                     <CanvasJSChart options={options}/>
-                    <BaseChangeForm changeBase={this.changeBase}/>
                 </div>
-                <div>
-                    <SharedCountries code={this.props.match.params.code}/> 
-                </div>
+                <BaseChangeForm changeBase={this.changeBase}/>
+                <SharedCountries code={this.props.match.params.code} valid={this.state.validCode}/>
             </div>
         )
     }

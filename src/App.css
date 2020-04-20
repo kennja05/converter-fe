@@ -2,10 +2,6 @@
   text-align: center;
   background-color: #EAE7DC;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 
@@ -56,19 +52,27 @@
   color: #E85A4f;
 }
 
-.chart-countries {
+
+.historical-info{
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  align-self: flex-start;
 }
 
-.shared-countries {
-  list-style-type: none;
-  color: #e98074
+.chart-holder{
+  height: 400px;
+  /* overflow: auto; */
 }
 
 .radio-form{
   display: flex;
   justify-content: center;
+  height: 10vh;
+}
+
+.shared-countries {
+  list-style-type: none;
+  color: #e98074;
+  height: 30vh;
 }
