@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {Route, Switch} from 'react-router-dom'
 import Main from './Main'
-import Start from './Start'
+import NavBar from './NavBar'
 import HistoricalInfo from './HistoricalInfo'
 
 class App extends React.Component {
@@ -24,10 +24,10 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
+        <NavBar />
         <Switch>
           <Route path='/convert' render={() => <Main appStateUpdate={this.infoForHistoricalRates} />} />
           <Route path='/historical_info/:code' render={(routerProps) => <HistoricalInfo {...routerProps} />} />
-          <Route path='/' component={Start} />
         </Switch>
       </div>
     );

@@ -8,8 +8,6 @@
   justify-content: space-evenly;
 }
 
-
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -58,26 +56,29 @@
 
 
 .historical-info{
-  height: 95vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   border-style: solid;
   color: #E98074;
   box-shadow: 5px 5px;
+  overflow: auto;
 }
 
 .radio-form{
   display: flex;
   justify-content: center;
-  height: 10vh;
+  height: 12vh;
+  color: #8e8d8a;
+  margin-top: 1%;
 }
 
 .shared-countries {
   list-style-type: none;
   color: #e98074;
   height: 30vh;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .shared-countries-list{
