@@ -27,7 +27,7 @@ class App extends React.Component {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route path='/convert' render={() => <Main appStateUpdate={this.infoForHistoricalRates} />} />
+          <Route path='/convert' render={(routerProps) => <Main appStateUpdate={this.infoForHistoricalRates} {...routerProps}/>} />
           <Route path='/historical_info/:code' render={(routerProps) => <HistoricalInfo {...routerProps} />} />
           <Route path='/all_countries' render={(routerProps) => <AllCountries {...routerProps} />} />
         </Switch>

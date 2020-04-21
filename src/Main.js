@@ -50,6 +50,7 @@ export default class Main extends React.Component {
     }
     
     render(){
+        console.log(this.props.location.state)
         return(
             this.state.loaded ? 
             <div className='container'>
