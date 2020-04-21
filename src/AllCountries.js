@@ -3,7 +3,8 @@ import React from 'react'
 export default class AllCountries extends React.Component {
 
     state = {
-        countries: []
+        countries: [],
+        startIndex: 0
     }
 
     componentDidMount(){
@@ -12,12 +13,27 @@ export default class AllCountries extends React.Component {
             .then(places => this.setState({countries: places}))
     }
 
+    handleNextClick = () => {
+        if (this.state.startIndex + 50 < this.state.countries.length){
+            this.setState({startIndex: this.state.startIndex + 50})
+        }
+    }
+
+    handlePrevClick = () => {
+        if (this.state.startIndex > 50){
+            this.setState({startIndex: this.state.startIndex - 50})
+        } else {
+            this.setState({startIndex: 0})
+        }
+    }
+
     render(){
         return(
             <div className='all-countries container'>
-                <ul className='list-group'>
-                    {this.state.countries.map(country => <li className='list-group-item' key={country.id}><span>{country.name}</span><span>{country.currency_name}</span></li>)}
+                <ul className='list-group countries-list'>
+                    {this.state.countries.slice(this.state.startIndex, this.state.startIndex + 50).map(country => <li className='list-group-item' key={country.id}><span>{country.name}</span><span>{country.currency_name}</span></li>)}
                 </ul>
+                <button onClick={this.handlePrevClick} style={{color: '#e98074'}}className='btn btn-light'>Previous</button>  <button onClick={this.handleNextClick} style={{color: '#e98074'}} className='btn btn-light'>Next</button>
             </div>
         )
     }

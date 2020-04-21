@@ -96,3 +96,7 @@
 .all-countries{
   overflow: auto;
 }
+
+.countries-list{
+  overflow: auto;
+}
