@@ -3,7 +3,7 @@ import React from 'react'
 class BaseChangeForm extends React.Component {
     
     state = {
-        checked: 'USD',
+        checked: this.props.base,
         showSubmit: false
     }
     

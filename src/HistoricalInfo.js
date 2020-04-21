@@ -8,21 +8,21 @@ var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default class HistoricalInfo extends React.Component {
     
     state = {
-        base: 'USD',
+        base: this.props.match.params.code !=='USD' ? 'USD' : 'EUR',
         historicalRates: [],
         coordinates: [],
         validCode: true
     }
 
-    // componentDidMount(){
-    //     this.getRates()
-    // }
+    componentDidMount(){
+        this.getRates()
+    }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     if (prevState.base !== this.state.base) {
-    //         this.getRates()
-    //     }
-    // }
+    componentDidUpdate(prevProps, prevState){
+        if (prevState.base !== this.state.base) {
+            this.getRates()
+        }
+    }
 
     getRates = () => {
         const base = this.state.base
@@ -113,7 +113,7 @@ export default class HistoricalInfo extends React.Component {
                 <div className='chart-holder'>
                     <CanvasJSChart options={options}/>
                 </div>
-                <BaseChangeForm changeBase={this.changeBase}/>
+                <BaseChangeForm base={this.state.base} changeBase={this.changeBase}/>
                 <SharedCountries code={this.props.match.params.code} valid={this.state.validCode}/>
             </div>
         )

@@ -10,12 +10,12 @@ export default class Main extends React.Component {
     state = {
         places: [],
         loaded: false,
-        startingCountry: 'AFN', //essentially giving the select form a default value if user submits form without changing anything
+        startingCountry: `${this.props.location.state ? this.props.location.state.convertFrom.currency_code : 'AFN'}`, //essentially giving the select form a default value if user submits form without changing anything
         endingCountry: 'AFN',
         amount: '1',
         searched: false,
         conversionInfo: [],
-
+        convertFrom: {name: null, currency_name: null, currency_code: null}
     }
 
     componentDidMount(){
@@ -25,6 +25,9 @@ export default class Main extends React.Component {
                 places: countries,
                 loaded: true
             }))
+            if (this.props.location.state !== undefined) {
+                this.setState({convertFrom: this.props.location.state.convertFrom})
+            }
     }
 
     handleFormChange = (e) => {
@@ -50,13 +53,12 @@ export default class Main extends React.Component {
     }
     
     render(){
-        console.log(this.props.location.state)
         return(
             this.state.loaded ? 
             <div className='container'>
                 <div className='convert-main'>
                     <h1 style={{color:'#8e8d8a'}}>Currency Conversion</h1>
-                    <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
+                    <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places} convertFrom={this.state.convertFrom}/>
                 </div>
                 {this.state.searched && <Result conversion={this.state.conversionInfo} />}
             </div>
