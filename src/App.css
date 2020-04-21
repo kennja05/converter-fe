@@ -43,6 +43,15 @@
   }
 }
 
+.nav-bar {
+  border-style: solid;
+  text-align: right;
+}
+
+.nav-bar a {
+  color: #e98074;
+}
+
 .convert-main{
   color:  #E98074; 
   border-style: solid;

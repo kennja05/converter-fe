@@ -52,7 +52,7 @@ export default class Main extends React.Component {
     render(){
         return(
             this.state.loaded ? 
-            <div>
+            <div className='container'>
                 <div className='convert-main'>
                     <h1 style={{color:'#8e8d8a'}}>Currency Conversion</h1>
                     <SearchForm amt={this.state.amount} handleFormSubmit={this.handleFormSubmit} handleFormChange={this.handleFormChange} countries={this.state.places}/>
