@@ -34,6 +34,7 @@ export default class AllCountries extends React.Component {
     render(){
         return(
             <div className='all-countries container'>
+                <h1 className='all-countries-header' style={{color: '#e85a4f'}}>All Countries</h1>
                 <ul className='list-group countries-list'>
                     {this.state.countries.slice(this.state.startIndex, this.state.startIndex + 50).map(country => <li className='list-group-item' key={country.id}><span>{country.name}</span> - <span>{country.currency_name} <span className='country-link' onClick={this.handleCodeClick} id={country.currency_code}>({country.currency_code})</span></span></li>)}
                 </ul>

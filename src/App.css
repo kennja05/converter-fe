@@ -5,7 +5,7 @@
   overflow: auto;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .App-logo {
@@ -44,8 +44,10 @@
 }
 
 .nav-bar {
-  border-style: solid;
+  /* border-style: solid; */
   text-align: right;
+  /* position: fixed; */
+  z-index: 1;
 }
 
 .nav-bar a {
@@ -97,8 +99,16 @@
   overflow: auto;
 }
 
+.all-countries-header{
+  z-index: 1;
+}
+
 .countries-list{
   overflow: auto;
+  color: #e8584f;
+  border-style: solid;
+  border-color: #E98074;
+  box-shadow: 5px 5px;
 }
 
 .country-link{
