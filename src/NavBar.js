@@ -7,7 +7,7 @@ export default class NavBar extends React.Component{
         return(
             <div className='container nav-bar'>
                <Link to='/convert'><span>Convert Currency</span></Link> <br></br>
-               <span>See All Available Currencies</span>
+               <Link to='/all_countries'><span>See All Available Currencies</span></Link>
             </div>
         )
     }

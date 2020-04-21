@@ -100,3 +100,12 @@
 .countries-list{
   overflow: auto;
 }
+
+.country-link{
+  color: blue;
+}
+
+.country-link:hover{
+  color: #e98074;
+  cursor: pointer;
+}
