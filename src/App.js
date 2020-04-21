@@ -4,6 +4,7 @@ import {Route, Switch} from 'react-router-dom'
 import Main from './Main'
 import NavBar from './NavBar'
 import HistoricalInfo from './HistoricalInfo'
+import AllCountries from './AllCountries'
 
 class App extends React.Component {
   
@@ -28,6 +29,7 @@ class App extends React.Component {
         <Switch>
           <Route path='/convert' render={() => <Main appStateUpdate={this.infoForHistoricalRates} />} />
           <Route path='/historical_info/:code' render={(routerProps) => <HistoricalInfo {...routerProps} />} />
+          <Route path='/all_countries' render={(routerProps) => <AllCountries {...routerProps} />} />
         </Switch>
       </div>
     );

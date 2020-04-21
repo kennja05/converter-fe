@@ -63,7 +63,6 @@
   color: #E85A4f;
 }
 
-
 .historical-info{
   height: 80vh;
   display: flex;
@@ -91,5 +90,9 @@
 }
 
 .shared-countries-list{
+  overflow: auto;
+}
+
+.all-countries{
   overflow: auto;
 }
