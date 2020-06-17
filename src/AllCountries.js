@@ -9,7 +9,7 @@ export default class AllCountries extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3000/countries')
+        fetch('https://converter-be.herokuapp.com/countries')
             .then(res => res.json())
             .then(places => this.setState({countries: places}))
     }

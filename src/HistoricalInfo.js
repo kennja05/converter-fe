@@ -29,7 +29,7 @@ export default class HistoricalInfo extends React.Component {
         const target = this.props.match.params.code
         const myDate = new Date();
         const formattedCurrentDate = myDate.toISOString().split('T')[0]
-        fetch(`http://localhost:3000/countries/historical/rates/${base}/${target}/${formattedCurrentDate}/`)
+        fetch(`https://converter-be.herokuapp.com/countries/historical/rates/${base}/${target}/${formattedCurrentDate}/`)
             .then(resp => resp.json())
             .then(pastRates => this.createCoordinates(pastRates))
     }

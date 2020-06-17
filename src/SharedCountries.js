@@ -9,7 +9,7 @@ export default class SharedCountries extends React.Component {
     }
 
     componentDidMount(){
-        fetch(`http://localhost:3000/countries/codes/${this.props.code}`)
+        fetch(`https://converter-be.herokuapp.com/countries/codes/${this.props.code}`)
             .then(res => res.json())
             .then(countryList => this.setState({countries: countryList, loaded: true}))
     }

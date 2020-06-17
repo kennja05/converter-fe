@@ -19,7 +19,7 @@ export default class Main extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3000/countries')
+        fetch('https://converter-be.herokuapp.com/countries')
             .then(resp => resp.json())
             .then(countries => this.setState({
                 places: countries,
@@ -41,7 +41,7 @@ export default class Main extends React.Component {
         e.preventDefault();
         if (this.state.amount && this.state.amount > 0) {
             const {startingCountry, endingCountry, amount} = this.state
-            fetch(`http://localhost:3000/countries/convert/${startingCountry}/${endingCountry}/${amount}`)
+            fetch(`https://converter-be.herokuapp.com/countries/convert/${startingCountry}/${endingCountry}/${amount}`)
                 .then(res => res.json())
                 .then(conversion => this.setState({
                     searched: true,
